@@ -9,20 +9,32 @@ var script = {
   props: ["url"],
   data: function data() {
     return {
-      meta: null
+      meta: null,
+      loading: false,
+      loaded: false,
+      loadingTime: null
     }
   },
   methods: {
     getURLData: function getURLData(url) {
       return fetch(("https://url-metadata.firebaseapp.com?url=" + url))
-        .then(function (response) { return response.json(); })
-        .then(function (json) { return json; });
+        .then(function (res) { return res.json(); });
     }
   },
   mounted: function mounted() {
     var this$1 = this;
 
-    this.getURLData(this.url).then(function (data) { return this$1.meta = data; });
+    var start = new Date();
+    this.loading = true;
+    this.getURLData(this.url)
+      .then(function (meta) {
+        this$1.meta = meta;
+        this$1.loading = false;
+        var end = new Date();
+        this$1.loadingTime = end - start;
+        this$1.loaded = true;
+      });
+    
   }
 };
 
@@ -30,7 +42,7 @@ var script = {
             var __vue_script__ = script;
             
 /* template */
-var __vue_render__ = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_vm._t("default",null,{meta:_vm.meta})],2)};
+var __vue_render__ = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_vm._t("default",null,{meta:_vm.meta,state:{ loading: _vm.loading, loaded: _vm.loaded },loadingTime:_vm.loadingTime})],2)};
 var __vue_staticRenderFns__ = [];
 
   /* style */

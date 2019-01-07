@@ -1,6 +1,6 @@
 <template>
   <div>
-    <slot :meta="meta" :loading="loading" :loading-time="loadingTime"></slot>
+    <slot :meta="meta" :state="{ loading, loaded }" :loading-time="loadingTime"></slot>
   </div>
 </template>
 
@@ -11,23 +11,28 @@ export default {
     return {
       meta: null,
       loading: false,
+      loaded: false,
       loadingTime: null
     }
   },
   methods: {
-    async getURLData(url) {
-      const res = await fetch(`https://url-metadata.firebaseapp.com?url=${url}`);
-      return await res.json();
+    getURLData(url) {
+      return fetch(`https://url-metadata.firebaseapp.com?url=${url}`)
+        .then(res => res.json());
     }
   },
-  async mounted() {
+  mounted() {
     const start = new Date();
     this.loading = true;
-    this.meta = await this.getURLData(this.url);
-    this.loading = false;
-    const end = new Date();
-
-    this.loadingTime = end - start;
+    this.getURLData(this.url)
+      .then(meta => {
+        this.meta = meta;
+        this.loading = false;
+        const end = new Date();
+        this.loadingTime = end - start;
+        this.loaded = true;
+      })
+    
   }
 }
 </script>
