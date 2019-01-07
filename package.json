@@ -1,5 +1,5 @@
 {
-  "name": "vue-link-preview",
+  "name": "@webdataorg/vue-link-preview",
   "version": "1.0.0",
   "description": "",
   "main": "dist/vue-link-preview.umd.js",
@@ -29,5 +29,8 @@
     "rollup-plugin-vue": "^4.3.2",
     "vue": "^2.5.21",
     "vue-template-compiler": "^2.5.21"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
