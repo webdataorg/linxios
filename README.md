@@ -8,27 +8,27 @@ A Vue component for providing you with a websites' metadata, it uses the [**WebD
 #### main.js
 
 ```js
-import VueLinkPreview from "@webdataorg/vue-link-preview";
+import Linxios from "@webdataorg/linxios";
 
-Vue.component("VueLinkPreview",VueLinkPreview);
+Vue.use(Linxios);
 ```
 ### Local Install
 #### App.vue
 ```vue
 <template>
-  <vue-link-preview>
-    <div slot-scope="{ meta }">
+  <lixios>
+    <div slot-scope="{ state, actions }">
       // use your own mark
     </div>
-  </vue-link-preview>
+  </lixios>
 </template>
 
 <script>
-import VueLinkPreview from "@webdataorg/vue-link-preview";
+import { Linxios } from "@webdataorg/linxios";
 
 export default {
   components: {
-    VueLinkPreview
+    Linxios
   }
 }
 </script>

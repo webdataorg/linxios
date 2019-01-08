@@ -134,12 +134,14 @@
   if (GlobalVue) {
     GlobalVue.use(plugin);
   }
+  var Linxios = component;
 
   // It's possible to expose named exports when writing components that can
   // also be used as directives, etc. - eg. import { RollupDemoDirective } from 'rollup-demo';
   // export const RollupDemoDirective = component;
 
-  exports.default = component;
+  exports.default = plugin;
+  exports.Linxios = Linxios;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
