@@ -1,7 +1,8 @@
 <template>
   <Linxios url="https://dev.to">
     <template slot-scope="{ state, actions: { setImageLoaded }}">
-      <img v-show="state.imageLoaded" :src="state.meta.og.image" @load="setImageLoaded()"/>
+      <!-- <img v-show="state.imageLoaded" :src="state.meta.og.image" @load="setImageLoaded()"/> -->
+      {{ state.loading }}
     </template>
   </Linxios>
 </template>

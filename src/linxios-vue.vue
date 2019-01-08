@@ -27,25 +27,22 @@ export default {
     }
   },
   methods: {
-    getURLData(url) {
-      return fetch(`https://url-metadata.firebaseapp.com?url=${url}`)
-        .then(res => res.json());
+    async getURLData(url) {
+      const res = await fetch(`https://url-metadata.firebaseapp.com?url=${url}`);
+      return res.json();
     },
     setImageLoaded() {
       this.imageLoaded = true;
+    },
+    setLoadingInfo() {
+      this.loading = false;
+      this.loaded = true;
     }
   },
-  mounted() {
-    const start = new Date();
+  async mounted() {
     this.loading = true;
-    this.getURLData(this.url)
-      .then(meta => {
-        this.meta = meta;
-        this.loading = false;
-        const end = new Date();
-        this.loadingTime = end - start;
-        this.loaded = true;
-      });
+    this.meta = await this.getURLData(this.url);
+    this.setLoadingInfo();
   }
 }
 </script>

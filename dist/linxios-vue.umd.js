@@ -4,6 +4,8 @@
   (factory((global.VueLinkPreview = {})));
 }(this, (function (exports) { 'use strict';
 
+  function __async(g){return new Promise(function(s,j){function c(a,x){try{var r=g[x?"throw":"next"](a);}catch(e){j(e);return}r.done?s(r.value):Promise.resolve(r.value).then(c,d);}function d(e){c(e,1);}c();})}
+
   //
   //
   //
@@ -33,28 +35,23 @@
       }
     },
     methods: {
-      getURLData: function getURLData(url) {
-        return fetch(("https://url-metadata.firebaseapp.com?url=" + url))
-          .then(function (res) { return res.json(); });
-      },
+      getURLData: function getURLData(url) {return __async(function*(){
+        var res = yield fetch(("https://url-metadata.firebaseapp.com?url=" + url));
+        return res.json();
+      }())},
       setImageLoaded: function setImageLoaded() {
         this.imageLoaded = true;
+      },
+      setLoadingInfo: function setLoadingInfo() {
+        this.loading = false;
+        this.loaded = true;
       }
     },
-    mounted: function mounted() {
-      var this$1 = this;
-
-      var start = new Date();
+    mounted: function mounted() {return __async(function*(){
       this.loading = true;
-      this.getURLData(this.url)
-        .then(function (meta) {
-          this$1.meta = meta;
-          this$1.loading = false;
-          var end = new Date();
-          this$1.loadingTime = end - start;
-          this$1.loaded = true;
-        });
-    }
+      this.meta = yield this.getURLData(this.url);
+      this.setLoadingInfo();
+    }.call(this))}
   };
 
   /* script */

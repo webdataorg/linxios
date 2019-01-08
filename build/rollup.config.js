@@ -3,6 +3,7 @@ import vue from 'rollup-plugin-vue';
 import buble from 'rollup-plugin-buble';
 import replace from 'rollup-plugin-replace';
 import uglify from 'rollup-plugin-uglify-es';
+import async from "rollup-plugin-async";
 import minimist from 'minimist';
 
 const argv = minimist(process.argv.slice(2));
@@ -24,7 +25,12 @@ const config = {
         isProduction: true,
       },
     }),
-    buble(),
+    async(),
+    buble({
+      transforms: {
+        generator: false
+      }
+    })
   ],
 };
 
