@@ -1,11 +1,11 @@
 // Import vue component
-import component from './vue-link-preview.vue';
+import component from './linxios-vue.vue';
 
 // install function executed by Vue.use()
 function install(Vue) {
   if (install.installed) return;
   install.installed = true;
-  Vue.component('VueLinkPreview', component);
+  Vue.component('Linxios', component);
 }
 
 // Create module definition for Vue.use()

@@ -18,13 +18,27 @@
         meta: null,
         loading: false,
         loaded: false,
-        loadingTime: null
+        loadingTime: null,
+        imageLoaded: false
+      }
+    },
+    computed: {
+      slotProps: function slotProps() {
+        return { 
+          state: this.$data, 
+          actions: {
+            setImageLoaded: this.setImageLoaded
+          }
+        }
       }
     },
     methods: {
       getURLData: function getURLData(url) {
         return fetch(("https://url-metadata.firebaseapp.com?url=" + url))
           .then(function (res) { return res.json(); });
+      },
+      setImageLoaded: function setImageLoaded() {
+        this.imageLoaded = true;
       }
     },
     mounted: function mounted() {
@@ -40,7 +54,6 @@
           this$1.loadingTime = end - start;
           this$1.loaded = true;
         });
-      
     }
   };
 
@@ -48,7 +61,7 @@
               var __vue_script__ = script;
               
   /* template */
-  var __vue_render__ = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_vm._t("default",null,{meta:_vm.meta,state:{ loading: _vm.loading, loaded: _vm.loaded },loadingTime:_vm.loadingTime})],2)};
+  var __vue_render__ = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_vm._t("default",null,null,_vm.slotProps)],2)};
   var __vue_staticRenderFns__ = [];
 
     /* style */
@@ -68,7 +81,7 @@
       var component = (typeof script$$1 === 'function' ? script$$1.options : script$$1) || {};
 
       // For security concerns, we use only base name in production mode.
-      component.__file = "vue-link-preview.vue";
+      component.__file = "linxios-vue.vue";
 
       if (!component.render) {
         component.render = template.render;
@@ -105,7 +118,7 @@
   function install(Vue) {
     if (install.installed) { return; }
     install.installed = true;
-    Vue.component('VueLinkPreview', component);
+    Vue.component('Linxios', component);
   }
 
   // Create module definition for Vue.use()

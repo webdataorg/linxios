@@ -1,6 +1,6 @@
 <template>
   <div>
-    <slot :meta="meta" :state="{ loading, loaded }" :loading-time="loadingTime"></slot>
+    <slot v-bind="slotProps"></slot>
   </div>
 </template>
 
@@ -12,13 +12,27 @@ export default {
       meta: null,
       loading: false,
       loaded: false,
-      loadingTime: null
+      loadingTime: null,
+      imageLoaded: false
+    }
+  },
+  computed: {
+    slotProps() {
+      return { 
+        state: this.$data, 
+        actions: {
+          setImageLoaded: this.setImageLoaded
+        }
+      }
     }
   },
   methods: {
     getURLData(url) {
       return fetch(`https://url-metadata.firebaseapp.com?url=${url}`)
         .then(res => res.json());
+    },
+    setImageLoaded() {
+      this.imageLoaded = true;
     }
   },
   mounted() {
@@ -31,8 +45,7 @@ export default {
         const end = new Date();
         this.loadingTime = end - start;
         this.loaded = true;
-      })
-    
+      });
   }
 }
 </script>
