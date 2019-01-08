@@ -1,4 +1,4 @@
-# Vue Link Preview
+# Linxios
 
 A Vue component for providing you with a websites' metadata, it uses the [**WebData API**](https://webdata.firebaseapp.com) for providing the metadata
 
