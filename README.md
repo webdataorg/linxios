@@ -8,7 +8,7 @@ A Vue component for providing you with a websites' metadata, it uses the [**WebD
 #### main.js
 
 ```js
-import Linxios from "@webdataorg/linxios";
+import Linxios from "@webdataorg/linxios-vue";
 
 Vue.use(Linxios);
 ```
@@ -24,7 +24,7 @@ Vue.use(Linxios);
 </template>
 
 <script>
-import { Linxios } from "@webdataorg/linxios";
+import { Linxios } from "@webdataorg/linxios-vue";
 
 export default {
   components: {

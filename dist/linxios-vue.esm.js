@@ -21,16 +21,19 @@ var script = {
   computed: {
     slotProps: function slotProps() {
       return { 
-        state: this.$data, 
+        state: Object.assign({},this.$data,{ imageLoading: this.imageLoading }), 
         actions: {
           setImageLoaded: this.setImageLoaded
         }
       }
+    },
+    imageLoading: function imageLoading() {
+      return !this.imageLoaded;
     }
   },
   methods: {
     getURLData: function getURLData(url) {return __async(function*(){
-      var res = yield fetch(("https://url-metadata.firebaseapp.com?url=" + url));
+      var res = yield fetch(("https://us-central1-webdata-eeba3.cloudfunctions.net/api?url=" + url));
       return res.json();
     }())},
     setImageLoaded: function setImageLoaded() {
@@ -45,7 +48,24 @@ var script = {
     this.loading = true;
     this.meta = yield this.getURLData(this.url);
     this.setLoadingInfo();
-  }.call(this))}
+  }.call(this))},
+  watch: {
+    loading: {
+      handler: function handler(n) {
+        this.$emit("loading",n);
+      }
+    },
+    loaded: {
+      handler: function handler(n) {
+        this.$emit("loaded",n);
+      }
+    },
+    imageLoaded: {
+      handler: function handler(n) {
+        this.$emit("image-loaded",n);
+      }
+    }
+  }
 };
 
 /* script */
