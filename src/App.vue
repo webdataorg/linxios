@@ -7,12 +7,6 @@
         <img v-show="state.imageLoaded" :src="state.meta.og.image" @load="setImageLoaded()"/>
       </template>
     </Linxios>
-    <Linxios url="https://dev.to" @loading="e => loading = e">
-      <template slot-scope="{ state, actions: { setImageLoaded }}">
-        <p v-if="state.imageLoading">loading</p>
-        <img v-show="state.imageLoaded" :src="state.meta.og.image" @load="setImageLoaded()"/>
-      </template>
-    </Linxios>
   </dir>
 </template>
 

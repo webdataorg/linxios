@@ -6,7 +6,12 @@
 
 <script>
 export default {
-  props: ["url"],
+  props: {
+    url: {
+      type: String,
+      required: true
+    }
+  },
   data() {
     return {
       meta: null,
