@@ -36,7 +36,7 @@ export default {
   },
   methods: {
     async getURLData(url) {
-      const res = await fetch(`https://us-central1-webdata-eeba3.cloudfunctions.net/api?url=${url}`);
+      const res = await fetch(`https://webdataapi.co.za/api?url=${url}`);
       return res.json();
     },
     setImageLoaded() {
