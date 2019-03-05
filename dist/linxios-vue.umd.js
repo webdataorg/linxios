@@ -14,7 +14,12 @@
   //
 
   var script = {
-    props: ["url"],
+    props: {
+      url: {
+        type: String,
+        required: true
+      }
+    },
     data: function data() {
       return {
         meta: null,
@@ -39,7 +44,7 @@
     },
     methods: {
       getURLData: function getURLData(url) {return __async(function*(){
-        var res = yield fetch(("https://us-central1-webdata-eeba3.cloudfunctions.net/api?url=" + url));
+        var res = yield fetch(("https://webdataapi.co.za/api?url=" + url));
         return res.json();
       }())},
       setImageLoaded: function setImageLoaded() {
