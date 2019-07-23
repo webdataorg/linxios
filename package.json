@@ -20,6 +20,7 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "@vue/cli": "^3.9.3",
     "cross-env": "^5.2.0",
     "minimist": "^1.2.0",
     "rollup": "^0.67.4",

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <slot v-bind="slotProps"></slot>
+    <slot v-bind="slotProps" />
   </div>
 </template>
 
@@ -24,7 +24,7 @@ export default {
   computed: {
     slotProps() {
       return { 
-        state: Object.assign({},this.$data,{ imageLoading: this.imageLoading }), 
+        state: Object.assign({}, this.$data, { imageLoading: this.imageLoading }), 
         actions: {
           setImageLoaded: this.setImageLoaded
         }
@@ -36,7 +36,7 @@ export default {
   },
   methods: {
     async getURLData(url) {
-      const res = await fetch(`https://webdataapi.co.za/api?url=${url}`);
+      const res = await fetch(`https://webdataapi.co.za/api/v1/get-metadata?url=${url}`);
       return res.json();
     },
     setImageLoaded() {
@@ -55,17 +55,17 @@ export default {
   watch: {
     loading: {
       handler(n) {
-        this.$emit("loading",n);
+        this.$emit("loading", n);
       }
     },
     loaded: {
       handler(n) {
-        this.$emit("loaded",n);
+        this.$emit("loaded", n);
       }
     },
     imageLoaded: {
       handler(n) {
-        this.$emit("image-loaded",n);
+        this.$emit("image-loaded", n);
       }
     }
   }

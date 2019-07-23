@@ -1,10 +1,8 @@
 <template>
   <dir>
-    {{ loading }}
-    <Linxios url="https://dev.to" @loading="e => loading = e">
-      <template slot-scope="{ state, actions: { setImageLoaded }}">
-        <p v-if="state.imageLoading">loading</p>
-        <img v-show="state.imageLoaded" :src="state.meta.og.image" @load="setImageLoaded()"/>
+    <Linxios url="https://dev.to">
+      <template v-if="state.loaded" slot-scope="{ state }">
+        {{ state.meta }}
       </template>
     </Linxios>
   </dir>
@@ -17,11 +15,5 @@ export default {
   components: {
     Linxios
   },
-  data() {
-    return {
-      loading: false,
-      meta: null
-    }
-  }
 }
 </script>
