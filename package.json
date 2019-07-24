@@ -1,6 +1,6 @@
 {
   "name": "@webdataorg/linxios-vue",
-  "version": "1.1.4",
+  "version": "1.2.0",
   "description": "",
   "main": "dist/linxios-vue.umd.js",
   "module": "dist/linxios-vue.esm.js",
