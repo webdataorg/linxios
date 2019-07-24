@@ -1,9 +1,3 @@
-<template>
-  <div>
-    <slot v-bind="slotProps" />
-  </div>
-</template>
-
 <script>
 export default {
   props: {
@@ -68,6 +62,11 @@ export default {
         this.$emit("image-loaded", n);
       }
     }
+  },
+  render() {
+    return this.$scopedSlots.default({
+      ...this.slotProps,
+    });
   }
 }
 </script>
